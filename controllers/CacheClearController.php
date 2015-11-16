@@ -28,7 +28,8 @@ class CacheClearController extends BaseController {
 
 		craft()->templateCache->deleteAllCaches();
 
-		if (craft()->request->getPost('redirect')) {
+		if (craft()->request->getParam('redirect')) {
+			craft()->userSession->setNotice(Craft::t('Cache cleared.'));
 			$this->redirectToPostedUrl();
 		}
 
